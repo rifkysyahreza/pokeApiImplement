@@ -10,8 +10,20 @@ import DropdownIcon from "@/assets/images/dropdown-icon.png";
 import SingleIcon from "@/assets/images/single-grid-icon.png";
 import GridIcon from "@/assets/images/two-grid-icon.png";
 import { cn } from "@/utils/utils";
+import { FC, useState } from "react";
 
-const Index = () => {
+interface DisplayOptionProps {
+  displayOptionFromChild: (option: boolean) => void;
+}
+
+const Index: FC<DisplayOptionProps> = ({ displayOptionFromChild }) => {
+  const [isTwoGrid, setIsTwoGrid] = useState<boolean>(false);
+
+  const handleDisplayOption = (option: boolean) => {
+    setIsTwoGrid(option);
+    displayOptionFromChild(option);
+  };
+
   return (
     <div className="flex justify-between gap-6">
       <div className="flex justify-between items-center bg-outer-primary rounded-lg px-2 py-3 basis-[70%]">
@@ -30,7 +42,14 @@ const Index = () => {
       </div>
 
       <div className="flex relative basis-[30%]">
-        <div className="bg-outer-primary w-full h-full rounded-l-lg relative">
+        {/* Single Grid */}
+        <div
+          className={cn(
+            !isTwoGrid ? "bg-outer-secondary" : "bg-outer-primary",
+            "w-full h-full rounded-l-lg relative"
+          )}
+          onClick={() => handleDisplayOption(false)}
+        >
           <img
             src={SingleIcon}
             alt="Display Single"
@@ -39,8 +58,18 @@ const Index = () => {
             )}
           />
         </div>
+
+        {/* Divider */}
         <div className="bg-inner-primary h-full w-1"></div>
-        <div className="bg-outer-primary w-full h-full rounded-r-lg relative">
+
+        {/* Two Grid */}
+        <div
+          className={cn(
+            isTwoGrid ? "bg-outer-secondary" : "bg-outer-primary",
+            "w-full h-full rounded-r-lg relative"
+          )}
+          onClick={() => handleDisplayOption(true)}
+        >
           <img
             src={GridIcon}
             alt="Display Grid"

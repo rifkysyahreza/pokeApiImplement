@@ -23,7 +23,7 @@ const Index: FC = () => {
         />
 
         {/* Name and Sprite */}
-        <div className="flex justify-between items-end">
+        <div className="flex justify-between items-center ">
           <h1 className="text-4xl font-bold text-white">
             {pokeName
               ? pokeName.charAt(0).toUpperCase() + pokeName.slice(1)
@@ -32,7 +32,7 @@ const Index: FC = () => {
           <img
             src={detail?.spriteFront}
             alt={`${pokeName} Sprite`}
-            className="bottom-11"
+            className=""
           />
         </div>
 
@@ -47,6 +47,8 @@ const Index: FC = () => {
               bgColor="#2AE3B7"
               baseBgColor="#3D4466"
               isLabelVisible={false}
+              height="6px"
+              className="py-1"
             />
             <h2 className="font-bold text-2xl text-white">
               {detail?.health}{" "}
