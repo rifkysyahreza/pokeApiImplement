@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
 import { cn } from "@/utils/utils";
-import { Progress } from "flowbite-react";
+import ProgressBar from "@ramonak/react-progress-bar";
 import usePokemonDetails from "../../hooks/usePokemonDetail";
 
 const Index: FC = () => {
@@ -41,7 +41,13 @@ const Index: FC = () => {
           {/* Health */}
           <div>
             <h3 className="text-inner-primary font-normal text-base">Health</h3>
-            <Progress />
+            <ProgressBar
+              completed={detail?.health ?? 0}
+              maxCompleted={1000}
+              bgColor="#2AE3B7"
+              baseBgColor="#3D4466"
+              isLabelVisible={false}
+            />
             <h2 className="font-bold text-2xl text-white">
               {detail?.health}{" "}
               <span className="font-normal text-base">from 1000</span>
