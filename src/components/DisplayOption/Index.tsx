@@ -10,19 +10,11 @@ import DropdownIcon from "@/assets/images/dropdown-icon.png";
 import SingleIcon from "@/assets/images/single-grid-icon.png";
 import GridIcon from "@/assets/images/two-grid-icon.png";
 import { cn } from "@/lib/utils";
-import { FC, useState } from "react";
+import { FC, useContext } from "react";
+import { UiPreferenceContext } from "@/context/UiPreference/uiPreferenceContext";
 
-interface DisplayOptionProps {
-  displayOptionFromChild: (option: boolean) => void;
-}
-
-const Index: FC<DisplayOptionProps> = ({ displayOptionFromChild }) => {
-  const [isTwoGrid, setIsTwoGrid] = useState<boolean>(false);
-
-  const handleDisplayOption = (option: boolean) => {
-    setIsTwoGrid(option);
-    displayOptionFromChild(option);
-  };
+const Index: FC = () => {
+  const { isSingleGrid, changePreference } = useContext(UiPreferenceContext);
 
   return (
     <div className="flex justify-between gap-6">
@@ -45,10 +37,10 @@ const Index: FC<DisplayOptionProps> = ({ displayOptionFromChild }) => {
         {/* Single Grid */}
         <div
           className={cn(
-            !isTwoGrid ? "bg-outer-secondary" : "bg-outer-primary",
+            isSingleGrid ? "bg-outer-secondary" : "bg-outer-primary",
             "w-full h-full rounded-l-lg relative"
           )}
-          onClick={() => handleDisplayOption(false)}
+          onClick={() => changePreference && changePreference(true)}
         >
           <img
             src={SingleIcon}
@@ -65,10 +57,10 @@ const Index: FC<DisplayOptionProps> = ({ displayOptionFromChild }) => {
         {/* Two Grid */}
         <div
           className={cn(
-            isTwoGrid ? "bg-outer-secondary" : "bg-outer-primary",
+            !isSingleGrid ? "bg-outer-secondary" : "bg-outer-primary",
             "w-full h-full rounded-r-lg relative"
           )}
-          onClick={() => handleDisplayOption(true)}
+          onClick={() => changePreference && changePreference(false)}
         >
           <img
             src={GridIcon}

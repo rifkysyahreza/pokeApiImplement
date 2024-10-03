@@ -1,20 +1,19 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import usePokemonList from "../../hooks/usePokemonList";
 import Card from "./Components/Card";
 import { cn } from "../../lib/utils";
+import { UiPreferenceContext } from "@/context/UiPreference/uiPreferenceContext";
 
-interface contentProps {
-  contentLayout: boolean;
-}
+const Index: FC = () => {
+  const { isSingleGrid } = useContext(UiPreferenceContext);
 
-const Index: FC<contentProps> = ({ contentLayout }) => {
   const list = usePokemonList().pokemonList;
   console.log(list);
 
   return (
     <div
       className={cn(
-        !contentLayout ? "flex flex-col" : "grid grid-cols-2",
+        isSingleGrid ? "flex flex-col" : "grid grid-cols-2",
         "gap-4"
       )}
     >
