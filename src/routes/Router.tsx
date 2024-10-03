@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
-import { cn } from "../utils/utils";
+import { cn } from "../lib/utils";
 import Header from "../components/Header/Index";
 import Home from "../pages/Home/Index";
 import Details from "../pages/Details/Index";

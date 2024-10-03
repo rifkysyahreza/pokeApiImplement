@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { cn } from "../../utils/utils";
+import { cn } from "../../lib/utils";
 import LogoIcon from "../../assets/images/pokemon-logo.png";
 import { IoIosSearch } from "react-icons/io";
 

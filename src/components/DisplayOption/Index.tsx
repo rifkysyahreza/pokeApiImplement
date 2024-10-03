@@ -9,7 +9,7 @@ import {
 import DropdownIcon from "@/assets/images/dropdown-icon.png";
 import SingleIcon from "@/assets/images/single-grid-icon.png";
 import GridIcon from "@/assets/images/two-grid-icon.png";
-import { cn } from "@/utils/utils";
+import { cn } from "@/lib/utils";
 import { FC, useState } from "react";
 
 interface DisplayOptionProps {

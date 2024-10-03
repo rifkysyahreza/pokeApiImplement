@@ -1,7 +1,7 @@
 import { FC } from "react";
 import usePokemonList from "../../hooks/usePokemonList";
 import Card from "./Components/Card";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 interface contentProps {
   contentLayout: boolean;

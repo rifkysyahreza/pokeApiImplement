@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { cn } from "@/utils/utils";
+import { cn } from "@/lib/utils";
 import usePokemonDetails from "@/hooks/usePokemonDetail";
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const Card: FC<IPokemonProps> = ({ name }) => {
 
   const navigate = useNavigate();
   const routeChange = () => {
-    let path = detail ? `/details/${name}` : "/details/UnknownPokemon";
+    const path = detail ? `/details/${name}` : "/details/UnknownPokemon";
     navigate(path);
   };
 

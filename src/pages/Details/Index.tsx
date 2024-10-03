@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
-import { cn } from "@/utils/utils";
+import { cn } from "@/lib/utils";
 import ProgressBar from "@ramonak/react-progress-bar";
 import usePokemonDetails from "../../hooks/usePokemonDetail";
 
