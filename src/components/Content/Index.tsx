@@ -1,4 +1,5 @@
 import { FC, useContext } from "react";
+import { Link } from "react-router-dom";
 import usePokemonList from "../../hooks/usePokemonList";
 import Card from "./Components/Card";
 import { cn } from "../../lib/utils";
@@ -8,7 +9,6 @@ const Index: FC = () => {
   const { isSingleGrid } = useContext(UiPreferenceContext);
 
   const list = usePokemonList().pokemonList;
-  console.log(list);
 
   return (
     <div
@@ -18,7 +18,9 @@ const Index: FC = () => {
       )}
     >
       {list.map((pokemon) => (
-        <Card name={pokemon.name} />
+        <Link to={`/${pokemon.name}`} key={pokemon.name}>
+          <Card name={pokemon.name} />
+        </Link>
       ))}
     </div>
   );

@@ -11,7 +11,7 @@ const Router: FC = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/details/:pokeName" element={<Details />}></Route>
+        <Route path="/:pokeName" element={<Details />}></Route>
       </Routes>
     </div>
   );
