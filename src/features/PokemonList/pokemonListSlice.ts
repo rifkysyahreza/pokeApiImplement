@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { STORED_POKEMON } from "@/const/localStoredPokemon";
 
 interface IPokemonListState {
-  pokemonList: PokemonList[];
+  pokemonList: PokemonNameAndUrl[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null | undefined;
 }
@@ -16,15 +17,29 @@ const initialState: IPokemonListState = {
 export const fetchPokemon = createAsyncThunk(
   "pokemonList/fetchPokemon",
   async () => {
+    const localStoredPokemonList = localStorage.getItem(STORED_POKEMON);
+
+    // If there is a local stored list, return it
+    if (localStoredPokemonList) {
+      return JSON.parse(localStoredPokemonList) as PokemonNameAndUrl[];
+    }
+
+    // Otherwise, fetch the list from the API
     const { data, status } = await axios.get(
       "https://pokeapi.co/api/v2/pokemon?limit=20"
     );
+    console.log("data fetched");
     if (status !== 200) {
       throw new Error("Failed to fetch Pokémon.");
     }
-    console.log("data fetched");
 
-    return data.results;
+    // Store the fetched list in the local storage
+    localStorage.setItem(
+      STORED_POKEMON,
+      JSON.stringify(data.results as PokemonNameAndUrl[])
+    );
+
+    return data.results as PokemonNameAndUrl[];
   }
 );
 

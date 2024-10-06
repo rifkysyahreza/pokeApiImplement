@@ -1,0 +1,1 @@
+export const STORED_POKEMON = "STORED_POKEMON";

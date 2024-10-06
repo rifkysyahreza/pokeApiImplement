@@ -1,4 +1,4 @@
-type PokemonList = {
+type PokemonNameAndUrl = {
   name: string;
   url: string;
 };
